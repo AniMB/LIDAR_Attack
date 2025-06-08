@@ -89,8 +89,8 @@ class Voxelize:
 
     def __entropy_r(self)-> float:
         data=self.__pointcloud[:,3]
-        width, bin_edges = knuth_bin_width(data, return_bins=True)
-        hist,_=np.histogram(data, bins=bin_edges)
+
+        hist,_=np.histogram(data, bins="auto")
         probs = hist / np.sum(hist)
         probs = probs[probs > 0]
         return entropy(probs, base=2)
